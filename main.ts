@@ -16,7 +16,7 @@ controller.moveSprite(myCrackHead, 85, 0)
 
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (myCrackHead.isHittingTile(CollisionDirection.Bottom)) {
-        myCrackHead.vy = -250
+        myCrackHead.vy = -200
     }
 })
 
@@ -32,4 +32,10 @@ info.onLifeZero(function(){
 
 scene.onOverlapTile(SpriteKind.Player, assets.tile`deathTile`, function(){
     info.changeLifeBy(-1)
+})
+
+scene.onOverlapTile(SpriteKind.Player, assets.tile`chestBox-Level1`, function(){
+    scene.setBackgroundColor(6)
+    tiles.setCurrentTilemap(tilemap`level0`)
+    tiles.placeOnTile(myCrackHead, tiles.getTileLocation(0, 18))
 })
